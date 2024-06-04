@@ -56,6 +56,7 @@ app.post('/scan', async (req, res) => {
         if (checks.includes("Integrity Failures")) {
             scanPromises.push(checkIntegrityFailures(targetUrl));
         }
+        
 
         const [
             xssVulnerabilities = [],
