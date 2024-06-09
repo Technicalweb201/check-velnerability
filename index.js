@@ -36,15 +36,15 @@ app.post('/scan', async (req, res) => {
         }
 
         scanPromises.push(checkMisconfigurations(targetUrl));
-        if (checks.includes("Server Misconfigurations")) {
+        if (checks.includes("Server Misconfig")) {
         }
-        if (checks.includes("Broken Access Control")) {
+        if (checks.includes("Broken Access")) {
             scanPromises.push(checkBrokenAccessControl(targetUrl));
         } 
         if (checks.includes("Broken Authentication")) {
             scanPromises.push(checkBrokenAuthentication(targetUrl));
         }
-        if (checks.includes("Identification and Authentication Failures")) {
+        if (checks.includes("Authentication Failures")) {
             scanPromises.push(checkIdentificationAuthentication(targetUrl));
         }
         if (checks.includes("Insecure Design")) {
@@ -56,7 +56,7 @@ app.post('/scan', async (req, res) => {
         if (checks.includes("Integrity Failures")) {
             scanPromises.push(checkIntegrityFailures(targetUrl));
         }
-        
+
 
         const [
             xssVulnerabilities = [],
@@ -91,6 +91,9 @@ app.post('/scan', async (req, res) => {
 app.get('/', (req, res) => {
     res.json({ message: "The server is running..." });
 });
+app.get('/health',(req,res)=>{
+    res.json({message:"I am ok!"})
+})
 
 app.listen(8080, () => {
     console.log('The server is running on port 8080...');
